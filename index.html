@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Virus Scan 😈</title>
+
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial;
+        background: black;
+        color: lime;
+        overflow: hidden;
+      }
+
+      #container {
+        text-align: center;
+        margin-top: 100px;
+      }
+
+      #barBox {
+        width: 400px;
+        height: 30px;
+        border: 2px solid lime;
+        margin: 20px auto;
+      }
+
+      #bar {
+        height: 100%;
+        width: 0%;
+        background: lime;
+      }
+
+      #status {
+        margin-top: 20px;
+      }
+
+      #hacked {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: red;
+        color: white;
+        text-align: center;
+        font-size: 40px;
+        padding-top: 150px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <h1>🛡️ Đang quét virus hệ thống...</h1>
+      <h2>chờ xíu nghe Vy</h2>
+      <div id="barBox">
+        <div id="bar"></div>
+      </div>
+
+      <div id="status">Khởi động quét...</div>
+    </div>
+
+    <div id="hacked">
+      💀 HỆ THỐNG ĐÃ BỊ XÂM NHẬP 💀
+      <br />
+      <button onclick="location.reload()">Thoát ngay</button>
+    </div>
+
+    <audio id="alarm">
+      <source src="https://www.myinstants.com/media/sounds/alarm.mp3" />
+    </audio>
+
+    <script>
+      let bar = document.getElementById("bar");
+      let status = document.getElementById("status");
+      let hacked = document.getElementById("hacked");
+      let alarm = document.getElementById("alarm");
+
+      let progress = 0;
+
+      let messages = [
+        "Đang kiểm tra file hệ thống...",
+        "Phát hiện hoạt động đáng ngờ...",
+        "Đang truy tìm mã độc...",
+        "Đang mã hóa dữ liệu...",
+        "Đang gửi dữ liệu lên server...",
+      ];
+
+      let interval = setInterval(() => {
+        progress += Math.random() * 5;
+        bar.style.width = progress + "%";
+
+        status.innerText =
+          messages[Math.floor(Math.random() * messages.length)];
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          triggerHack();
+        }
+      }, 200);
+
+      function triggerHack() {
+        document.getElementById("container").style.display = "none";
+        hacked.style.display = "block";
+
+        // rung màn hình
+        setInterval(() => {
+          document.body.style.transform =
+            "translate(" +
+            (Math.random() * 10 - 5) +
+            "px," +
+            (Math.random() * 10 - 5) +
+            "px)";
+        }, 50);
+
+        // nhấp nháy nền
+        setInterval(() => {
+          hacked.style.background = Math.random() > 0.5 ? "red" : "black";
+        }, 100);
+
+        // âm thanh cảnh báo
+        alarm.play();
+      }
+    </script>
+  </body>
+</html>
